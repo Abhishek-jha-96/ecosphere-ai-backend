@@ -1,0 +1,13 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: fastapi-dev
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./src:/src:Z
