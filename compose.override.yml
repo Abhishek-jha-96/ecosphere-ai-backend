@@ -4,10 +4,23 @@ services:
       context: .
       dockerfile: Dockerfile
       target: dev
-    container_name: fastapi-dev
+    container_name: ecosphere-ai-backend
     ports:
       - "8000:8000"
     env_file:
       - .env
     volumes:
       - ./src:/src:Z
+
+  database:
+    image: postgres:16
+    container_name: ecosphere-ai-database
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
