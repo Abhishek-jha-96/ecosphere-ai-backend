@@ -37,7 +37,7 @@ services:
       dockerfile: Dockerfile
       target: dev
     container_name: ecosphere-ai-celery
-    command: python -m celery -A core.celery_app worker --loglevel=INFO
+    command: python -m celery -A config.celery.app worker --loglevel=INFO
     env_file:
       - .env
     volumes:
@@ -53,7 +53,7 @@ services:
       dockerfile: Dockerfile
       target: dev
     container_name: ecosphere-ai-celery-beat
-    command: python -m celery -A core.celery_app beat --loglevel=INFO
+    command: python -m celery -A config.celery.app beat --loglevel=INFO
     env_file:
       - .env
     volumes:
