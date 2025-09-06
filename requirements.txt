@@ -1,6 +1,10 @@
+# Server
 fastapi[standard]
 pydantic-settings==2.10.1
 SQLAlchemy==2.0.43
 
-
+# Celery
 celery==5.5.3
+
+# Auth
+firebase_admin==7.1.0

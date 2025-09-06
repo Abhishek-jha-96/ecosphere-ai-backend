@@ -21,7 +21,7 @@ def parse_cors(v: Any) -> list[str] | str:
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file="../.env",
+        env_file=".secrets/.env",
         env_ignore_empty=True,
         extra="ignore",
     )
@@ -70,6 +70,8 @@ class Settings(BaseSettings):
     @property
     def REDIS_URL(self) -> str:
         return f"redis://{self.REDIS_HOST}:{self.REDIS_PORT}"
+
+    FIRE_BASE_CONFIG: str = ".secrets/firebase-service-account.json"
 
 
 settings = Settings()  # type: ignore
