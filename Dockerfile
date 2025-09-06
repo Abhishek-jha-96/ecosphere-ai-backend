@@ -14,13 +14,15 @@ WORKDIR /src
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
+ENV PYTHONPATH=/src
+
 # ========================
 # Development image
 # ========================
 FROM base AS dev
 WORKDIR /src
 COPY src/ /src
-# Dev tools 
+# Dev tools
 RUN pip install --no-cache-dir uvicorn[standard]
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 

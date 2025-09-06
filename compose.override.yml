@@ -8,9 +8,9 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - .secrets/.env
     volumes:
-      - ./src:/src:Z
+      - ./src:/src:z
     depends_on:
       - database
       - redis
@@ -21,9 +21,9 @@ services:
     ports:
       - "5432:5432"
     env_file:
-      - .env
+      - .secrets/.env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data:z
 
   redis:
     image: redis:7
@@ -39,9 +39,9 @@ services:
     container_name: ecosphere-ai-celery
     command: python -m celery -A config.celery.app worker --loglevel=INFO
     env_file:
-      - .env
+      - .secrets/.env
     volumes:
-      - ./src:/src:Z
+      - ./src:/src:z
     depends_on:
       - backend
       - redis
@@ -55,9 +55,9 @@ services:
     container_name: ecosphere-ai-celery-beat
     command: python -m celery -A config.celery.app beat --loglevel=INFO
     env_file:
-      - .env
+      - .secrets/.env
     volumes:
-      - ./src:/src:Z
+      - ./src:/src:z
     depends_on:
       - backend
       - redis

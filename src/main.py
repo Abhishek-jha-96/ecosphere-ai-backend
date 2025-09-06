@@ -18,7 +18,7 @@ app = FastAPI(
     generate_unique_id_function=custom_generate_unique_id,
 )
 
-cred = credentials.Certificate(settings.FIREBASE_CONFIG)
+cred = credentials.Certificate(settings.FIRE_BASE_CONFIG)
 firebase_admin.initialize_app(cred)
 
 # Set all CORS enabled origins
