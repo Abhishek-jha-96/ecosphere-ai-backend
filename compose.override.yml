@@ -11,6 +11,9 @@ services:
       - .env
     volumes:
       - ./src:/src:Z
+    depends_on:
+      - database
+      - redis
 
   database:
     image: postgres:16
@@ -21,6 +24,44 @@ services:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: ecosphere-ai-redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: ecosphere-ai-celery
+    command: python -m celery -A core.celery_app worker --loglevel=INFO
+    env_file:
+      - .env
+    volumes:
+      - ./src:/src:Z
+    depends_on:
+      - backend
+      - redis
+      - database
+
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: ecosphere-ai-celery-beat
+    command: python -m celery -A core.celery_app beat --loglevel=INFO
+    env_file:
+      - .env
+    volumes:
+      - ./src:/src:Z
+    depends_on:
+      - backend
+      - redis
+      - database
 
 volumes:
   postgres_data:
