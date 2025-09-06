@@ -1,4 +1,5 @@
-from sqlalchemy import Column, DateTime, Integer, String, func
+from sqlalchemy import Column, DateTime, Integer, String, func, Enum
+from api.user.constants import AuthProvider
 from core.models import Base
 
 
@@ -8,7 +9,7 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
 
     email = Column(String(255), unique=True, nullable=False, index=True)
-    provider = Column(String(50), nullable=False, index=True)
+    provider = Column(Enum(AuthProvider), nullable=False, index=True)
     provider_id = Column(String(255), unique=True, nullable=False)
 
     first_name = Column(String(50), nullable=True)
