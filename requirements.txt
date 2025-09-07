@@ -5,6 +5,7 @@ SQLAlchemy==2.0.43
 
 # Celery
 celery==5.5.3
+celery[redis]
 
 # Auth
 firebase_admin==7.1.0

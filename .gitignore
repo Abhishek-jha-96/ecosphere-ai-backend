@@ -208,3 +208,4 @@ __marimo__/
 
 # For App keys
 .secrets/*
+firebase-service-account.json

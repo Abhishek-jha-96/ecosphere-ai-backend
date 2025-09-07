@@ -71,7 +71,7 @@ class Settings(BaseSettings):
     def REDIS_URL(self) -> str:
         return f"redis://{self.REDIS_HOST}:{self.REDIS_PORT}/0"
 
-    FIRE_BASE_CONFIG: str = ".secrets/firebase-service-account.json"
+    FIRE_BASE_CONFIG: str = "./firebase-service-account.json"
 
 
 settings = Settings()  # type: ignore
