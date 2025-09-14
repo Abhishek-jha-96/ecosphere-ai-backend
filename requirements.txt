@@ -12,3 +12,4 @@ firebase_admin==7.1.0
 
 # AI
 google-search-results==2.4.2
+scikit-learn==1.7.2
